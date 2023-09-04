@@ -25,3 +25,18 @@ warmStrategyCache({
 
   //registrando a rota
   registerRouter(({request})=> request.mode === 'navigate', pageCache)
+
+
+  //configurando cache de assets
+
+  registerRoute(
+   ({request})=> ['style', 'script', 'worker'].includes(request.destination),
+   new StaleWhileRevalidate({
+    cacheName:'asset-cache',
+    plugins:[
+        new CacheableResponsivePlugin({
+            statuses:[0, 200],
+        }),
+    ],
+   }),
+  );
