@@ -8,11 +8,11 @@ import {ExpirationPlugin} from "workbox-recipes";
 const pageCache = new CacheFirst({
     cacheName:'primeira-pwa-cache',
     plugins:[
-        new CacheableResponsivePlugin({
+        new CacheableResponsivePlugin({//registra o status
             statuses:[0,200],
         
         }),
-        new ExpirationPlugin({
+        new ExpirationPlugin({//segundos para expirar o cache
             maxAgeSeconds:30*24*60*60,
         }),
     ],
