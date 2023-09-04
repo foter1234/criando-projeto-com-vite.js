@@ -40,4 +40,9 @@ warmStrategyCache({
     ],
    }),
   );
-  
+
+  //configurando offline fallback
+
+  offlineFallback({
+    pageFallback:'/offline.html',
+  });
