@@ -17,9 +17,11 @@ const pageCache = new CacheFirst({
         }),
     ],
 //indicando cache de página
-    warmStrategyCache({
-      urls:['/index.html', '/'],
-      strategy:pageCache,
-    });
-    
 })
+warmStrategyCache({
+    urls:['/index.html', '/'],
+    strategy:pageCache,
+  });
+
+  //registrando a rota
+  registerRouter(({request})=> request.mode === 'navigate', pageCache)
