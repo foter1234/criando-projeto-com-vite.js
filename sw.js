@@ -16,4 +16,10 @@ const pageCache = new CacheFirst({
             maxAgeSeconds:30*24*60*60,
         }),
     ],
+//indicando cache de página
+    warmStrategyCache({
+      urls:['/index.html', '/'],
+      strategy:pageCache,
+    });
+    
 })
