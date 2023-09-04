@@ -1,22 +1,19 @@
-let cacheName="jogo da velha"
-let filesToCache =["/","index.html","css/index.css","js/index.js"]
+import {warmStrategyCache} from "workbox-recipes";
+import {CacheFirst, StaleWhileRevalidate} from "workbox-strategies";
+import {registerRouter} from "workbox-routing";
+import {CacheableResponsivePlugin} from "workbox-cacheble-response";
+import {ExpirationPlugin} from "workbox-recipes";
 
-//inicializando a service worker e fazendo o download do conteudo da aplicação
-
-self.addEventListener("install",(e)=>{
-    e.waitUntil(
-        caches.open(cacheName).then(function(cache){
-            return cache.addAll(filesToCache)
-        })
-    )
-})
-
-//disponibizando o conteudo quando estiver offline
-
-self.addEventListener("fetch",(e)=>{
-    e.respondWith(
-        caches.match(e.request).then((response)=>{
-     return response || fetch(e.request);
-        })
-    )
+//configurando o cache
+const pageCache = new CacheFirst({
+    cacheName:'primeira-pwa-cache',
+    plugins:[
+        new CacheableResponsivePlugin({
+            statuses:[0,200],
+        
+        }),
+        new ExpirationPlugin({
+            maxAgeSeconds:30*24*60*60,
+        }),
+    ],
 })
