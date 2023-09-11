@@ -1,14 +1,14 @@
-import {warmStrategyCache} from "workbox-recipes";
+import {warmStrategyCache, offlineFallback} from "workbox-recipes";
 import {CacheFirst, StaleWhileRevalidate} from "workbox-strategies";
 import {registerRoute, Route} from "workbox-routing";
-import {CacheableResponsivePlugin} from "workbox-cacheable-response";
+import {CacheableResponsePlugin} from "workbox-cacheable-response";
 import {ExpirationPlugin} from "workbox-expiration";
 
 //configurando o cache
 const pageCache = new CacheFirst({
     cacheName:'primeira-pwa-cache',
     plugins:[
-        new CacheableResponsivePlugin({//registra o status
+        new CacheableResponsePlugin({//registra o status
             statuses:[0,200],
         
         }),
@@ -33,7 +33,7 @@ warmStrategyCache({
    new StaleWhileRevalidate({
     cacheName:'asset-cache',
     plugins:[
-        new CacheableResponsivePlugin({
+        new CacheableResponsePlugin({
             statuses:[0, 200],
         }),
     ],

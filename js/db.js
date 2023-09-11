@@ -13,7 +13,7 @@ async function createDB() {
 
                     const store = db.createObjectStore('pessoas', {
                         //A propiedade nome será o campo chave
-                        key: 'nome'
+                        keyPath: 'nome'
                     })
                     //Criando um indice id na store, deve star contido no objeto do bancod
                       store.createIndex('id', 'id');
@@ -33,8 +33,8 @@ async function createDB() {
 window.addEventListener("DOMContentLoaded", async event =>{
     createDB()
     document.getElementById("input")
-    document.getElementById("btnSalvar").addEventListener("click",addData);
-    document.getElementById("btnListar").addEventListener("click",getData)
+    document.getElementById("btnSalvar").addEventListener("click", addData);
+    document.getElementById("btnListar").addEventListener("click", getData)
 })
 
 async function addData(){
