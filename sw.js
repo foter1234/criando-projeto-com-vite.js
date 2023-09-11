@@ -1,7 +1,7 @@
 import {warmStrategyCache} from "workbox-recipes";
 import {CacheFirst, StaleWhileRevalidate} from "workbox-strategies";
 import {registerRoute, route} from "workbox-routing";
-import {CacheableResponsivePlugin} from "workbox-cacheble-response";
+import {CacheableResponsivePlugin} from "workbox-cacheable-response";
 import {ExpirationPlugin} from "workbox-recipes";
 
 //configurando o cache

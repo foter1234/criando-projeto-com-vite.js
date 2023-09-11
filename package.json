@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "vite": "^4.4.5",
-    "workbox-cacheble-response":"^6.5.4",
+    "workbox-cacheable-response":"^6.5.4",
     "workbox-expiration":"^6.5.4",
     "workbox-recipes":"^6.5.4",
     "workbox-routing":"^6.5.4",
