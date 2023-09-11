@@ -49,3 +49,19 @@ function showResult(text) {
     document.querySelector('output').innerHTML = text;
     
 }
+
+async function getData(){
+    const tx = await db.transaction('pessoas','readonly');
+    const store = tx.objectStore('pessoas');
+    const value = await store.getAll();
+   
+    if (value) {
+        showResult('dados do banco:' + JSON.stringify(value))
+
+        
+    } else {
+        showResult('não há nenhum dado no banco')
+    }
+
+    
+}
