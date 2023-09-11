@@ -1,8 +1,8 @@
 import {warmStrategyCache} from "workbox-recipes";
 import {CacheFirst, StaleWhileRevalidate} from "workbox-strategies";
-import {registerRoute, route} from "workbox-routing";
+import {registerRoute, Route} from "workbox-routing";
 import {CacheableResponsivePlugin} from "workbox-cacheable-response";
-import {ExpirationPlugin} from "workbox-recipes";
+import {ExpirationPlugin} from "workbox-expiration";
 
 //configurando o cache
 const pageCache = new CacheFirst({
@@ -24,11 +24,10 @@ warmStrategyCache({
   });
 
   //registrando a rota
-  registerRouter(({request})=> request.mode === 'navigate', pageCache)
+  registerRoute(({request})=> request.mode === 'navigate', pageCache)
 
 
   //configurando cache de assets
-
   registerRoute(
    ({request})=> ['style', 'script', 'worker'].includes(request.destination),
    new StaleWhileRevalidate({
@@ -46,3 +45,4 @@ warmStrategyCache({
   offlineFallback({
     pageFallback:'/offline.html',
   });
+
